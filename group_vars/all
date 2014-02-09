@@ -7,27 +7,27 @@
 
 # app_name should be a shorthand, lowercase, no spaces version of the
 # application name since this variable will be used as a directory name
-app_name: django_app
+app_name: python_slides
 
 # Django project settings directory, which might be different than your
 # app name. for example, txt2react
-django_settings_dir_name:
+django_settings_dir_name: readthedocs
 
 # Django settings module to use when running Manage commands
 # for example, txt2react.settings
-django_settings:
+django_settings: readthedocs.settings.postgres
 
 # remote git repository to pull application code from, for example:
 # ssh://git@github.com/makaimc/txt2react.git
-code_repository:
+code_repository: https://github.com/nyergler/readthedocs.org.git
 
 # name of the user created by the Fabric script that Ansible will use to
 # handle server tasks
-deploy_user: deployer
+deploy_user: vagrant
 
 # this will be removed in a future version once I pull it directly
 # from ansible's environment variables
-webserver_ip: 162.216.19.17
+webserver_ip: 10.0.2.15
 
 # server directory for the virtualenv that will be created to run the web app
 virtualenv_dir: /home/{{deploy_user}}/venvs/{{app_name}}
@@ -37,10 +37,10 @@ virtualenv_dir: /home/{{deploy_user}}/venvs/{{app_name}}
 app_code_dir: /home/{{deploy_user}}/{{app_name}}
 
 # location of the requirements.txt flie in the code
-requirements_file: "{{app_code_dir}}/requirements.txt"
+requirements_file: "{{app_code_dir}}/deploy_requirements.txt"
 
 # location of fixtures to load when configuring the web app
-fixtures_file: "{{app_code_dir}}/core/fixtures/prod.json"
+fixtures_file: "{{app_code_dir}}/readthedocs/projects/fixtures/test_data.json"
 
 # local directory where public & private deployment ssh keys and
 # authorized_keys are located
@@ -48,7 +48,7 @@ ssh_dir: /home/{{deploy_user}}/.ssh
 
 # root domain name the server should run as. do not include a subdomain,
 # for example, txt2react.com
-root_domain_name:
+root_domain_name: pyslides.com
 
 # for now, disable SSL (deploying with SSL works but need to update scripts
 # to use it)
@@ -58,7 +58,7 @@ deploy_ssl: false
 # that Django's manage.py command can run properly
 django_env_vars: {
     DEBUG: True,
-    DATABASE_URL: '', # ex: postgres://deployer@127.0.0.1:5432/dbname'
+    DATABASE_URL: 'postgres://deployer@127.0.0.1:5432/pyslides',
     STATIC_URL: '/static/',
     SECRET_KEY: '',
 }
