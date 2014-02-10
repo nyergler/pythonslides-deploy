@@ -1,41 +1,31 @@
-Deploy Django with Ansible
-==========================
+====================
+Python Slides Deploy
+====================
 
-This project contains an example Ansible Playbook for deploying a Django
-project. You should probably use 
-`underwear <https://github.com/makaimc/underwear>`_ to deploy instead of
-these files. These files are intended as examples for the 
-`January 2014 San Fran Django meetup talk <http://www.meetup.com/The-San-Francisco-Django-Meetup-Group/events/151920512/>`_.
- 
+This repository contains the Ansible_ playbooks needed to deploy
+`Python Slides`_ or `Read the Docs`_. The playbooks are based on
+`django-ansible`_, itself based on Matthew Makai's `SF Django Meetup
+examples`_.
 
-Background
-----------
-I build a lot of Django apps and I wanted a way to easily deploy them to
-a traditional virtual private server stack instead of just defaulting to
-Heroku. I previously wrote extensive Fabric scripts to automate the 
-server configuration and deployment process, but that's really the wrong 
-tool for this goal. Ansible is a much better way to solve the repeatable 
-deployment problem.
+Getting Started
+---------------
 
+This repository contains a Vagrantfile_, and defaults to targeting a
+single Vagrant_ virtual machine as the web and database server. You
+can get started by simply::
 
-First steps
------------
-Ansible runs over SSH, so we need a way to bootstrap SSH connections through
-a non-root user. 
+ $ vagrant up
+ $ ansible-playbook -i hosts django-stack.yml
 
-One way to automate these first few steps is with Fabric. The 
-fabfile.py.template contains one public function, bootstrap_ansible. 
-bootstrap_ansible calls the other functions to create a non-root user with 
-sudo privileges, upload public keys for deployment, and lock down root from 
-logging in.
-
-Copy fabfile.py.template to fabfile.py, fill in the commented fields at
-the top of the script, then run the script with::
-
-  fab bootstrap_ansible
-
-Right now the script will prompt you for the password the non-root user should
-be created with. I'll automate that manual step away later.
+If you want to use these playbooks to deploy Read The Docs or other
+Django applications, the ``group_vars/all`` file is a good place to
+start.
 
 
-
+.. _Ansible: http://ansible.com/
+.. _`Python Slides`: https://github.com/nyergler/pythonslides
+.. _`Read the Docs`: https://github.com/rtfd/readthedocs.org
+.. _`django-anssible`: https://github.com/nyergler/django-ansible
+.. _`SF Django Meetup examples`: https://github.com/makaimc/sf-django
+.. _Vagrant: http://www.vagrantup.com/
+.. _Vagrantfile: http://docs.vagrantup.com/v2/vagrantfile/
