@@ -19,8 +19,8 @@ django_settings: readthedocs.settings.postgres
 
 # remote git repository to pull application code from, for example:
 # ssh://git@github.com/makaimc/txt2react.git
-code_repository: https://github.com/nyergler/readthedocs.org.git
-code_repository_version: master
+code_repository: https://github.com/nyergler/pythonslides.git
+code_repository_version: ps
 
 # name of the user created by the Fabric script that Ansible will use to
 # handle server tasks
