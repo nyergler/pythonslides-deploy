@@ -33,6 +33,11 @@
   command: mkdir {{app_code_dir}}/static
   when: static_dir.stat.isdir is not defined
 
+- name: generate local settings file
+  template: src=local_settings.py.js2
+            dest={{app_code_dir}}/readthedocs/settings/local_settings.py
+            backup=yes
+
 - name: Django collectstatic
   django_manage: command=collectstatic
                  app_path={{app_code_dir}}
